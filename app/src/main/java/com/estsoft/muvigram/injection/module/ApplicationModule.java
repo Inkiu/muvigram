@@ -2,12 +2,12 @@ package com.estsoft.muvigram.injection.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 
-import com.estsoft.muvigram.data.remote.FindFriendService;
 import com.estsoft.muvigram.data.remote.LoginTestService;
 import com.estsoft.muvigram.data.remote.MusicSelectService;
 import com.estsoft.muvigram.data.remote.NetworkTestService;
-import com.estsoft.muvigram.data.remote.TrendingTagsService;
 import com.estsoft.muvigram.injection.qualifier.ApplicationContext;
 
 import javax.inject.Singleton;
@@ -59,16 +59,14 @@ public class ApplicationModule {
         return MusicSelectService.Creator.newMusicSelectService();
     }
 
+    //media scope!!
     @Provides
     @Singleton
-    FindFriendService provideFindFriendService() {
-        return FindFriendService.Creator.newFindFriendService();
+    MediaPlayer provideMediaPlayer() {
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        return mediaPlayer;
     }
 
-    @Provides
-    @Singleton
-    TrendingTagsService provideTrendingTagsService(){
-        return TrendingTagsService.Creator.newTrendingTagsService();
-    }
 
 }

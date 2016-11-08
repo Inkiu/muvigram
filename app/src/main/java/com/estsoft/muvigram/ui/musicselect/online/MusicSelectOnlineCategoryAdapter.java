@@ -53,7 +53,7 @@ public class MusicSelectOnlineCategoryAdapter extends RecyclerView.Adapter<Music
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         Category category = mCategories.get(position);
-        holder.bindCategory(category);
+        holder.bindCategory(category, position);
     }
 
     @Override
@@ -63,17 +63,19 @@ public class MusicSelectOnlineCategoryAdapter extends RecyclerView.Adapter<Music
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
 
+        private Category mCategory;
 
         @BindView(R.id.musicselect_online_category_item) LinearLayout mCategoryButton;
         @BindView(R.id.musicselect_online_category_item_image) ImageView mCategoryImage;
         @BindView(R.id.musicselect_online_category_item_name) TextView mCategoryName;
 
 
-        public void bindCategory(Category category) {
+        public void bindCategory(Category category, int position) {
+            mCategory = category;
             mCategoryName.setText(category.name());
             mCategoryButton.setOnClickListener(v -> {
                 Context context = mCategoryButton.getContext();
-                Intent intent = MusicSelectOnlineListActivitiy.newIntent(context, category.id());
+                Intent intent = MusicSelectOnlineListActivitiy.newIntent(context, mCategory.id());
                 context.startActivity(intent);
             });
         }

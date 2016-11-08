@@ -1,15 +1,11 @@
 package com.estsoft.muvigram.data;
 
 
-import com.estsoft.muvigram.data.remote.FindFriendService;
 import com.estsoft.muvigram.data.remote.LoginTestService;
 import com.estsoft.muvigram.data.remote.MusicSelectService;
 import com.estsoft.muvigram.data.remote.NetworkTestService;
-import com.estsoft.muvigram.data.remote.TrendingTagsService;
 import com.estsoft.muvigram.model.Category;
-import com.estsoft.muvigram.model.Friend;
 import com.estsoft.muvigram.model.Music;
-import com.estsoft.muvigram.model.Tag;
 import com.estsoft.muvigram.model.TestRepo;
 
 import java.util.Collection;
@@ -31,20 +27,15 @@ public class DataManager {
     private final NetworkTestService mNetworkTestService;
     private final LoginTestService mLoginTestService;
     private final MusicSelectService mMusicSelectService;
-    private final FindFriendService mFindFriendService;
-    private final TrendingTagsService mTrendingTagsService;
 
     @Inject
-    public DataManager(NetworkTestService networkTestService,
-                       LoginTestService loginTestService,
-                       MusicSelectService musicSelectService,
-                       FindFriendService findFriendService,
-                       TrendingTagsService trendingTagsService) {
-        this.mNetworkTestService = networkTestService;
-        this.mLoginTestService = loginTestService;
-        this.mMusicSelectService = musicSelectService;
-        this.mFindFriendService = findFriendService;
-        this.mTrendingTagsService = trendingTagsService;
+    public DataManager(NetworkTestService mNetworkTestService,
+                       LoginTestService mLoginTestService,
+                       MusicSelectService mMusicSelectService) {
+        this.mNetworkTestService = mNetworkTestService;
+        this.mLoginTestService = mLoginTestService;
+        this.mMusicSelectService = mMusicSelectService;
+
     }
 
     public Observable<TestRepo> getLoginTestService() {
@@ -55,7 +46,6 @@ public class DataManager {
         return mNetworkTestService.getTestData();
     }
 
-
     public Observable<List<Category>> getCategories() {
         return mMusicSelectService.getCategries();
     }
@@ -63,12 +53,6 @@ public class DataManager {
     public Observable<List<Music>> getMusics() {
         return mMusicSelectService.getMusics();
     }
-
-    public Observable<List<Friend>> getFriends() {
-        return mFindFriendService.getFriends();
-    }
-
-    public Observable<List<Tag>> getTags() { return  mTrendingTagsService.getTags(); }
 
 //    public Observable<Category> getCategories() {
 //        return mMusicSelectService.getCategries()

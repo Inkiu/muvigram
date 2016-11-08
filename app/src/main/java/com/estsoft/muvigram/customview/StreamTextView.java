@@ -24,8 +24,8 @@ public class StreamTextView extends View {
     private float mDynamicTextSize;
     private String mDynamicText = "Alone Together - Fall Out Boy";
     private int mPosX = 0;
-    private static final String SPACE = "        ";
-    private static final int LOOP_STRING_CNT = 3;
+    private final String SPACE = "        ";
+    private final int LOOP_STRING_CNT = 3;
 
 
     public StreamTextView(Context context) {
@@ -82,13 +82,10 @@ public class StreamTextView extends View {
 
     public void setText(@NonNull String mDynamicText) {
 
-        StringBuffer buf = new StringBuffer();
         for(int i = 0; i < LOOP_STRING_CNT; i++) {
-            buf.append(mDynamicText);
-            buf.append(SPACE);
+            mDynamicText += SPACE + mDynamicText;
         }
-
-        this.mDynamicText = buf.toString();
+        this.mDynamicText = mDynamicText;
     }
 
 

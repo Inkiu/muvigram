@@ -20,9 +20,7 @@ import com.estsoft.muvigram.customview.transparentview.TabView;
 import com.estsoft.muvigram.customview.transparentview.TransParentTabView;
 import com.estsoft.muvigram.customview.viewpager.PreCachingLayoutManager;
 import com.estsoft.muvigram.customview.viewpager.RecyclerViewPager;
-import com.estsoft.muvigram.injection.component.ParentFragmentComponent;
 import com.estsoft.muvigram.model.FeedRepo;
-import com.estsoft.muvigram.ui.home.HomeActivity;
 import com.estsoft.muvigram.ui.profile.CircleTransform;
 import com.estsoft.muvigram.util.ViewUtils;
 import com.squareup.picasso.Picasso;
@@ -57,19 +55,14 @@ public class FeedFragment extends Fragment implements TransParentTabView.OnTabIt
     private FeedAdapter mFeedAdapter;
     private int mScrollState;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //super.onCreateView(inflater, container, savedInstanceState);
+
+        Timber.e("onCreateView");
 
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
-        
         ButterKnife.bind(this, view);
-
-        final ParentFragmentComponent mParentFragmentComponent = ((HomeActivity) getActivity()).getSingleFragmentActivityComponent(this);
-        mParentFragmentComponent.inject(this);
-
 
         initViewPager();
         initTransParentTab();
@@ -158,7 +151,6 @@ public class FeedFragment extends Fragment implements TransParentTabView.OnTabIt
 
     private void initMusicRecordView() {
         final RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mMusicRecordView.getLayoutParams();
-
         final int bottomMargin = ViewUtils.getDisplayPerHeightByRes(getContext(), R.integer.music_record_view_margin_bottom_per);
         final int rightMargin = ViewUtils.getDisplayPerWidthByRes(getContext(), R.integer.music_record_view_margin_right_per);
         params.setMargins(0, 0, rightMargin, bottomMargin);
@@ -183,7 +175,7 @@ public class FeedFragment extends Fragment implements TransParentTabView.OnTabIt
             final Uri videoFile = Uri.parse("android.resource://" + getActivity().getPackageName() + "/raw/" + VIDEO_FILE_NAME);
 
 
-            for (int j = 0; j < 20; j++) {
+            for(int j = 0; j < 20; j++) {
                 ret.add(
                         new FeedRepo(getContext(), getResources().getString(R.string.user_name_text_dummy), videoFile,
                                 drawables[i], "https://pbs.twimg.com/profile_images/565601976063647744/PP085xzu.jpeg",

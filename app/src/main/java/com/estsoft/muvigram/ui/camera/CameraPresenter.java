@@ -30,6 +30,9 @@ public class CameraPresenter extends BasePresenter<CameraView> {
         mCameraView = null;
     }
 
+
+
+
     private boolean isRecording = false;
 
     public void recordVideo() {

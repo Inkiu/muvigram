@@ -21,8 +21,7 @@ import dagger.Component;
  * In DI's perspective :
  *   1. Implicit dependency objects
  *     1) Context context() from {@link ApplicationComponent}
- *     2) Application app
- *     lication() from {@link ApplicationComponent}
+ *     2) Application application() from {@link ApplicationComponent}
  *     3) {@link DataManager} from {@link ApplicationComponent}
  *
  *   2. Explicit dependency objects

@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.estsoft.muvigram.R;
 import com.estsoft.muvigram.customview.IncreasVideoView;
+import com.estsoft.muvigram.ui.base.activity.BaseActivity;
 import com.estsoft.muvigram.ui.base.activity.BasePlainActivity;
 import com.estsoft.muvigram.ui.home.HomeActivity;
 import com.estsoft.muvigram.ui.sign.SignInActivity;
@@ -40,6 +41,7 @@ public class IntroActivity extends BasePlainActivity implements IntroView {
     String mSingupText;
     @BindView(R.id.intro_video_view)
     IncreasVideoView mVideoView;
+
     @Inject
     IntroPresenter mIntroPresenter;
 
